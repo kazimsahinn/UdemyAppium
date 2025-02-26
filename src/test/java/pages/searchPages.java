@@ -3,9 +3,12 @@ package pages;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
+
+import static org.testng.AssertJUnit.assertEquals;
 
 
 public class searchPages {
@@ -22,7 +25,7 @@ public class searchPages {
      By sıfırdanAppiumMobilTest = AppiumBy.androidUIAutomator("new UiSelector().text(\"Sıfırdan Appium & Java İle Mobil Test Otomasyonu Öğrenin\")");
      By buyNowButton = AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.udemy.android:id/btnBuyNow\")");
      By searchIcon = AppiumBy.androidUIAutomator("new UiSelector().resourceId(\"com.udemy.android:id/left_action\")");
-
+     By courseTitle = AppiumBy.xpath("//android.widget.TextView[@resource-id=\"com.udemy.android:id/course_title\"]");
 
 
 
@@ -66,9 +69,17 @@ public class searchPages {
         driver.findElement(selectFirstSearch).click();
     }
 
-    public void clickSıfırdanAppiumMobilTest() {
+    public void clickAppiumMobilTestCourse() {
         waitForElement(sıfırdanAppiumMobilTest);
         driver.findElement(sıfırdanAppiumMobilTest).click();
+    }
+
+    public void displayedCourseTitle(){
+        waitForElement(courseTitle);
+        String actualTitle = driver.findElement(courseTitle).getText();
+        String expectedTitle = "Sıfırdan Appium & Java İle Mobil Test Otomasyonu Öğrenin";
+        assertEquals(expectedTitle, actualTitle);
+
     }
 
     public void displayedBuyNowButton() {
